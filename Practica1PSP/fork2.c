@@ -15,7 +15,7 @@ void main() {
   {        
     printf("Hamil \n");	
     
-      pid_hijo = getpid();
+    
      
     
     
@@ -25,8 +25,8 @@ void main() {
    pid_hijo = wait(NULL); //espera la finalización del proceso hijo
    
    
-        pid_propio = getpid();
-   printf("Mi PID es:%d\n" , pid_propio);
+        pid_padre= getpid();
+   printf("Mi PID es:%d\n" , pid_padre);
    printf("Mi hijo tenia el PID:%d\n" , pid_hijo);
   
           
