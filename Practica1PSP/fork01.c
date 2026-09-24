@@ -21,7 +21,7 @@ void main() {
     printf("Mi PID es:%d\n" , pid_hijo);
     printf("El PID de mi padre es:%d\n" , pid_padre);
      
-    //sleep(30); 
+    
   }
   else    //Nos encontramos en Proceso padre 
   { 
