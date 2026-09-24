@@ -5,7 +5,7 @@
 #include <sys/wait.h>
 
 void main() {
-  pid_t pid, pid_hijo, pid_padre, pid_propio;
+  pid_t pid, pid_hijo, pid_padre;
   
 
   pid = fork();
@@ -15,8 +15,8 @@ void main() {
   {        
     printf("Soy el proceso hijo \n");	
     
+      
       pid_hijo=getpid();
-       pid_propio=getpid();
       pid_padre=getppid();	 
     printf("Mi PID es:%d\n" , pid_hijo);
     printf("El PID de mi padre es:%d\n" , pid_padre);
@@ -28,9 +28,9 @@ void main() {
    pid_hijo = wait(NULL); //espera la finalización del proceso hijo
    
    printf("Soy el proceso padre\n"); 
-      pid_propio=getpid();
+      pid_padre=getpid();
      
-   printf("Mi PID es:%d\n" , pid_propio);
+   printf("Mi PID es:%d\n" , pid_padre);
    printf("Mi hijo tenia el PID:%d\n" , pid_hijo);
    printf("El proceso hijo ha terminado \n");
           
@@ -39,3 +39,4 @@ void main() {
   }
    exit(0);
 }
+
