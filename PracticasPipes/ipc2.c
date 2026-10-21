@@ -1,58 +1,55 @@
+#include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <sys/wait.h>
-#include <time.h>
 
+int main() {
+    int fd[2];
 
-int main(){
-
-int fd[2];
-    
-    time_t t;
-    int numero1;
-    srand((unsigned) time(&t));  
-
-    char operador='+';
     pipe(fd);
-    pid_t pid=fork();
+    pid_t pid = fork();
 
+    ssize_t bytesleidos;
 
+    if (pid == 0) {
+        char entrada[10];
+        int total = 0;
+        int numero1;
 
-
-
-
-
-    if(pid==0){
-        int numeroSumar=0;
-        int sumados=0;
-        char operador;
         close(fd[1]);
-        while(read(fd[0],&numeroSumar,sizeof(numeroSumar))){
-
-            printf("Numero introducido %d \n",numeroSumar);
-            sumados +=numeroSumar;
-
+        sleep(10);
+        while (read(fd[0], entrada, sizeof(entrada)) ) {
+            if (strcmp(entrada, "+") != 0) {
+                numero1 = atoi(entrada);
+                printf("El numero es %d\n", numero1);
+                total += numero1;
+            } else {
+                printf("El operador es %s\n", entrada);
+             
+            }
         }
-        printf("Sumatorio %d",sumados);
 
-    }else{
-
-        
-
+        printf("El total es %d\n", total);
         close(fd[0]);
-        for(int i =0 ; i<=2;i++){
-            numero1=rand() % 50; 
-            write(fd[1],&numero1,sizeof(numero1)); 
-        }
-       
-         write(fd[1],&operador,sizeof(operador)); 
+
+    } else {
+        close(fd[0]);
+        char entrada[10];
+
+        do {
+            printf("Introduce los numeros (+ para terminar): \n");
+            scanf("%c", entrada);
+
+            write(fd[1], entrada, sizeof(entrada));
+
+        } while (strcmp(entrada, "+") != 0);
+
         close(fd[1]);
         wait(NULL);
-        printf("He terminado soy padre \n");
 
+        printf("He terminado soy padre\n");
     }
 
-
-
+    return 0;
 }
