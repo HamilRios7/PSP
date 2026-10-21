@@ -10,7 +10,7 @@ int main() {
     pipe(fd);
     pid_t pid = fork();
 
-    ssize_t bytesleidos;
+
 
     if (pid == 0) {
         char entrada[10];
