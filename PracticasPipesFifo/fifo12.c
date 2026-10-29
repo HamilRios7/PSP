@@ -26,11 +26,11 @@ int main() {
         }
     }
 
-   int fd2 = open(fifo2, O_WRONLY);
+   fd = open(fifo2, O_WRONLY);
 
-   write(fd2,&numero,sizeof(numero));
+   write(fd,&numero,sizeof(numero));
 
     close(fd);
-    close(fd2);
+    
     return 0;
 }
