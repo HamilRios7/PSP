@@ -6,7 +6,7 @@
 #include <time.h>
 int main() {
     const char *fifo = "canal_num";
-    const char *fifo2 = "canal_num";
+   
     time_t t;
     int numero1;
     srand((unsigned) time(&t));
