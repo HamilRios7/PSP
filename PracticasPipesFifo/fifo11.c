@@ -21,10 +21,7 @@ int main() {
 
     // Abrir FIFO para escritura (bloquea hasta que el lector abra)
     int fd = open(fifo, O_WRONLY);
-    if (fd == -1) {
-        printf("escritor: error al abrir FIFO");
-        exit(EXIT_FAILURE);
-    }
+   
 
     // Escribir el número en la FIFO
     if (write(fd, &numero1 ,sizeof(numero1)) == -1) {
@@ -34,15 +31,12 @@ int main() {
     }
 
     //abrir fifo lecutra
-    int fd2 = open(fifo2, O_RDONLY);
-    if (fd2 == -1) {
-        printf("escritor: error al abrir FIFO");
-        exit(EXIT_FAILURE);
-    }
+    fd = open(fifo2, O_RDONLY);
+   
 
     int solucionFact;
     // leer el número en la FIFO
-    if (read(fd2, &solucionFact ,sizeof(solucionFact)) == -1) {
+    if (read(fd, &solucionFact ,sizeof(solucionFact)) == -1) {
         printf("escritor: error al escribir");
     } else {
         printf("El factorial es %d.\n", solucionFact);
@@ -50,6 +44,6 @@ int main() {
 
 
     close(fd);
-    close(fd2);
+   
     return 0;
 }
