@@ -52,6 +52,8 @@ int main() {
 
         write(fd2[1], &letraDni, sizeof(letraDni));
 
+
+        wait(NULL);   
         close(fd[0]); 
         close(fd2[1]);
     
