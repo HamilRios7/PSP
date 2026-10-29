@@ -86,6 +86,8 @@ int main() {
         read(fd4[0],&totalMult,sizeof(totalMult));
         printf("La multiplicacion es %d \n" , totalMult );
 
+        wait(NULL);
+        wait(NULL);
         close(fd[1]);
         close(fd2[1]);
         close(fd3[0]);
